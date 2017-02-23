@@ -35,14 +35,7 @@ rm "$package_name.sdef"
 
 cd ".."
 
-cat << EOF > "Package.swift"
-import PackageDescription
-
-let package = Package(
-    name: "$package_name"
-)
-
-EOF
+swift build
 
 git init
 git add .
