@@ -15,8 +15,7 @@ path_to_app="$1"
 package_name="$2"
 
 package_dir="build/$package_name"
-info_plist="$path_to_app/Contents/Info.plist"
-app_version=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "$info_plist")
+app_version=$("$script_dir/get-version.py" "$path_to_app")
 
 echo "Generating Swift interface for $path_to_app $app_version"
 
