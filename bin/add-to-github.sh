@@ -15,4 +15,5 @@ cd "$path_to_package"
 
 name="$(basename $(pwd))"
 hub create "SwiftScripting/$name"
-git push origin master
+git push -u origin master
+git push origin --tags
