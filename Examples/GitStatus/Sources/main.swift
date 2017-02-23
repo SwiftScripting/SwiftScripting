@@ -6,6 +6,8 @@ import Xcode
 
 let xcode = application(name: "Xcode") as! XcodeApplication
 
+let project = xcode.activeWorkspaceDocument?.file?.deletingPathExtension().lastPathComponent ?? "(unknown)"
+
 if let rootDir = xcode.activeWorkspaceDocument?.file?.deletingLastPathComponent()
 {
     let branch = Git(in: rootDir, command: "rev-parse", arguments: ["--abbrev-ref", "HEAD"])
@@ -29,6 +31,7 @@ if let rootDir = xcode.activeWorkspaceDocument?.file?.deletingLastPathComponent(
         message = "Files modified and added to index"
     }
 
-    print("⎇ \(branchName)\(message)")
+    print("\(project)\n⎇ \(branchName)\(message)")
+    ShowNotification(title: "\(project)", subtitle: "⎇ \(branchName)", message: message)
 }
 
